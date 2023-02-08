@@ -34,21 +34,29 @@ public class Words {
         return listWords;
     }
 
-    public static void numberOfRepeatedWords() {
-        String stringAllWords = word.toString().replaceAll("[\n\\s+]", " ").strip();
-        String[] words = stringAllWords.split(" ");
-        Integer counter = 1;
-        for (int i = 0; i < words.length; i++) {
-            if (words[i] != "") {
-                if (mapWords.containsKey(words[i])) {
-                    counter  = mapWords.get(words[i]);
-                    counter++;
-                    mapWords.put(words[i], counter);
-                } else
-                    mapWords.put(words[i], counter);
+    public static void numberOfRepeatedWords(File file) {
+        try(BufferedReader read = new BufferedReader(new FileReader(file))){
+            while(read.ready()) {
+                String[] words = read.readLine().split(" ");
+                Integer counter = 1;
+                for (int i = 0; i < words.length; i++) {
+                    if (words[i] != "") {
+                        if (mapWords.containsKey(words[i])) {
+                            counter = mapWords.get(words[i]);
+                            counter++;
+                            mapWords.put(words[i], counter);
+                        } else
+                            mapWords.put(words[i], counter);
+                    }
+                }
             }
+            Comparator();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
+    public static void Comparator(){
         Comparator<Object> comparator = new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {

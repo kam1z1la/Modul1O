@@ -50,6 +50,6 @@ public class Main {
         Words.putWords("the day sunny the the");
         Words.putWords("the sunny is is");
         Words.putWordsInFile(word);
-        Words.numberOfRepeatedWords();
+        Words.numberOfRepeatedWords(word);
     }
 }
