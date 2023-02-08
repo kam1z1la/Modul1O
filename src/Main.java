@@ -1,5 +1,6 @@
 import Task2.User;
 import Task1.Number;
+import Task3.Words;
 
 import java.io.*;
 
@@ -37,5 +38,18 @@ public class Main {
         }
 
         user.writeContactUsersInJson(json);
+
+        System.out.println("//////////////////////////");
+        File word = new File("words.txt");
+        if (!fileNumbers.exists()) {
+            fileNumbers.createNewFile();
+            System.out.println("file create");
+        }
+
+        Words.putWords("the day is 34 sunny the the");
+        Words.putWords("the day sunny the the");
+        Words.putWords("the sunny is is");
+        Words.putWordsInFile(word);
+        Words.numberOfRepeatedWords();
     }
 }
