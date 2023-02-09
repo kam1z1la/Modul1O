@@ -20,7 +20,7 @@ public class Words {
     public static String changeLinkedListToString(LinkedList<String> listWords){
         return word.append(" ")
                    .append(listWords.toString()
-                                    .replaceAll("[\\[\\,\\]]", "")
+                                    .replaceAll("[\\[\\,\\]]", " ")
                                     .strip()).toString();
     }
 
@@ -30,25 +30,24 @@ public class Words {
             if (!Character.isDigit(c))
                 string.append(c);
         }
-        listWords.add(string + "\n");
+
+        listWords.add(string.toString().replaceAll("[\\s]+"," ") + "\n");
         return listWords;
     }
 
     public static void numberOfRepeatedWords(File file) {
         try(BufferedReader read = new BufferedReader(new FileReader(file))){
             while(read.ready()) {
-                String[] words = read.readLine().split(" ");
+                String[] words  = read.readLine().strip().split(" ");
                 Integer counter = 1;
-                for (int i = 0; i < words.length; i++) {
-                    if (words[i] != "") {
-                        if (mapWords.containsKey(words[i])) {
-                            counter = mapWords.get(words[i]);
-                            counter++;
-                            mapWords.put(words[i], counter);
-                        } else
-                            mapWords.put(words[i], counter);
-                    }
-                }
+                    for (int i = 0; i < words.length; i++) {
+                            if (mapWords.containsKey(words[i])) {
+                                counter = mapWords.get(words[i]);
+                                counter++;
+                                mapWords.put(words[i], counter);
+                            } else
+                                mapWords.put(words[i], counter);
+                        }
             }
             Comparator();
         } catch (IOException e) {
