@@ -49,22 +49,16 @@ public class Words {
                                 mapWords.put(words[i], counter);
                         }
             }
-            Comparator();
+            comparator();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void Comparator(){
-        Comparator<Object> comparator = new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                return mapWords.get(o1).compareTo(mapWords.get(o2)) > 0? 1:-1;
-            }
-        };
-
-        TreeMap<String,Integer> treemap = new TreeMap<>(comparator.reversed());
-        treemap.putAll(mapWords);
-        System.out.println(treemap);
+    public static void comparator(){
+        mapWords.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEach(System.out::println);
     }
 }
